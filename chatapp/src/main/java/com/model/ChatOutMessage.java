@@ -7,6 +7,15 @@ public class ChatOutMessage {
     private String message;
     private String groupName;
     private Date timestamp;
+
+    // constructors
+    public ChatOutMessage() {
+		
+	}
+    public ChatOutMessage(String message) {
+        this.message = message;
+    }
+
     
     // getters and setters
     public String getMessage() {
