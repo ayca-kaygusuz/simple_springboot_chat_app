@@ -9,6 +9,14 @@ public class ChatInMessage {
     private String message;
     private Date timestamp;
 
+    // constructors 
+    public ChatInMessage() {
+    }
+
+    public ChatInMessage(String message) {
+        this.message = message;
+    }
+
     // getters and setters
     public String getSenderId() {
         return senderId;
