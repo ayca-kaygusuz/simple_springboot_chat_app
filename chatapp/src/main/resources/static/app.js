@@ -39,6 +39,10 @@ function connect() {
             showTyping(JSON.parse(greeting.body).content);
         });
         
+        stompClient.subscribe('/topic/errors', function (greeting) {
+            showErrors(JSON.parse(greeting.body).content);
+        });
+        
         sendName();
     });
     
@@ -74,6 +78,10 @@ function sendName() {
 function showJoinedName(message) {
 	shortName = message;
     $("#members").append("<tr><td>" + message + " just joined</td></tr>");
+}
+
+function showErrors(message) {
+	$("#errorMessages").html("<tr><td>" + message + "</td></tr>");
 }
 
 $(function () {
