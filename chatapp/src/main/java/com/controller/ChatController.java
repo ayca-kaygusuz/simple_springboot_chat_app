@@ -1,8 +1,9 @@
 package com.controller;
 
-import org.springframework.messaging.handler.annotation.*;
+import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-//import org.springframework.web.util.HtmlUtils;
 
 import com.model.ChatInMessage;
 import com.model.ChatOutMessage;
@@ -25,6 +26,16 @@ public class ChatController {
     @SendTo("/topic/guestupdates")
     public ChatOutMessage handleUserIsTyping(ChatInMessage message) throws Exception{
         return new ChatOutMessage("Someone is typing...");
+    }
+
+    @MessageExceptionHandler
+    @SendTo("/topic/errors")
+    public ChatOutMessage handleException(Throwable exception){
+
+        ChatOutMessage manualErrorHandle = new ChatOutMessage("An error has occurred.");
+        
+        return manualErrorHandle;
+
     }
 
 }
